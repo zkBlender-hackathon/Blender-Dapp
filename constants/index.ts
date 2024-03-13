@@ -1,0 +1,24 @@
+export const V_TOTAL = 0.04;
+
+export const ARB_SEPOLIA_TESTNET_RPC = "https://sepolia-rollup.arbitrum.io/rpc";
+
+export const DKG_CONTRACT_ADDRESS =
+  "0xe177490de26B1e7fb645B84cd390dF1358d74d66";
+
+export const ETH_PRIVATE_ADDRESS = "0x01f9812cF2F9FecB2Dc0BFf1a6Bf8F81574e4993";
+
+export const MULTICALL3_ADDRESS = "0x18A0df5c96B2Df788dB3083f4cF75aa9A3a9cf45";
+
+export const RELAYER_ADDRESS = "0x19F96D5e33cDbADc7E16e060E6276274560bbAB1";
+
+export const FEE = 1;
+
+export const ROUTER_ADDRESS = "0x10eF69F94695ef99736b5b4E2b1619bFe5f4B872";
+
+export const ROUTER_FEE = "3000";
+
+export const WETH9_ADDRESS = "0xaEaF3d97AdF5d6DAde3a84FaF45202163035E592";
+
+export const PAIR_ADDRESS = "0x6C10BdD9519217c729506c7d3a2Cb76b57A3238D";
+
+export const SWAP_EXACT_TOKENS_FOR_ETH_COMMAND = "0x0b08";

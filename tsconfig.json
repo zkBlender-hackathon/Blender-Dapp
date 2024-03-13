@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext", "ES2021"],
+    "target": "ES2021",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "checkJs": false,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "types": ["node"]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "fuzzy_commitment_js/*.js",
+    "SDK/*.ts",
+    "hooks/zk-resource/**/*.wasm",
+    "hooks/zk-resource/**/*.zkey",
+    "public/worker.js"
+  ],
+  "exclude": ["node_modules"]
+}
