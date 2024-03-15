@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { Config, doublerContractABI, reverterContractABI } from '../constants'
 import multicall2ABI from '../constants/abi/MultiCall2.json'
-import { useBlockMeta, useCall, useEthers } from '../hooks'
+import { useBlockMeta, useCall, useEthers } from '.'
 import { renderDAppHook, setupTestingConfig, sleep } from '../testing'
 
 import { constants, providers, Wallet } from 'ethers'

@@ -1,6 +1,6 @@
-import { useChainMeta } from '../../src/hooks/useChainMeta'
+import { useChainMeta } from './useChainMeta'
 import { renderHook } from '@testing-library/react-hooks'
-import { Arbitrum, Mainnet } from '../../src'
+import { Arbitrum, Mainnet } from '..'
 import { expect } from 'chai'
 
 describe('useChainMeta', () => {

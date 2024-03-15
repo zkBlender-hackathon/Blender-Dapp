@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { DEFAULT_OPTIONS, formatCurrency } from '../../src/model/formatting'
+import { DEFAULT_OPTIONS, formatCurrency } from './formatting'
 
 describe('formatCurrency', () => {
   describe('input validation', () => {

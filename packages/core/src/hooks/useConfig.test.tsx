@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { useConfig, useUpdateConfig } from './useConfig'
-import { renderDAppHook, setupTestingConfig } from '../../src/testing'
+import { renderDAppHook, setupTestingConfig } from '../testing'
 import { Config } from '../constants'
 import { Kovan } from '../model'
 

@@ -1,4 +1,4 @@
-import { Chain } from '../../constants'
+import { Chain } from '..'
 import { Connector } from '../../providers/network/connectors/connector'
 import { providers } from 'ethers'
 

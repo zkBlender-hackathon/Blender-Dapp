@@ -30,13 +30,20 @@ export const Deposit = () => {
   const { switchNetwork, chainId, account, deactivate, activateBrowserWallet } =
     useEthers();
 
-  // useEffect(() => {
-  //   if (!chainId) {
-  //     switchNetwork(ArbitrumSepolia.chainId).then(() =>
-  //       activateBrowserWallet()
-  //     );
-  //   }
-  // }, [chainId]);
+  const [balanceETH, setBalanceETH] = useState("");
+
+  useEffect(() => {
+    async function getBalance() {
+      const provider = new ethers.providers.JsonRpcProvider(
+        ARB_SEPOLIA_TESTNET_RPC
+      );
+      if (account) {
+        const balance = await provider.getBalance(account);
+        setBalanceETH(parseFloat(ethers.utils.formatEther(balance)).toFixed(5));
+      }
+    }
+    getBalance();
+  }, [chainId, account, balanceETH]);
 
   const balanceHex = useEtherBalance(account);
 
@@ -129,25 +136,35 @@ export const Deposit = () => {
 
   useEffect(() => {
     if (amount1 !== "" && amount2 !== "" && amount3 !== "" && amount4 !== "") {
-      const total =
-        parseFloat(amount1) +
-        parseFloat(amount2) +
-        parseFloat(amount3) +
-        parseFloat(amount4);
+      // const total =
+      //   parseFloat(amount1) +
+      //   parseFloat(amount2) +
+      //   parseFloat(amount3) +
+      //   parseFloat(amount4);
 
-      if (total == V_TOTAL) {
-        setTotal(String(total));
+      const amount11 = ethers.utils.parseEther(amount1);
+      const amount22 = ethers.utils.parseEther(amount2);
+      const amount33 = ethers.utils.parseEther(amount3);
+      const amount44 = ethers.utils.parseEther(amount4);
 
-        setVPrivate([
-          BigInt(parseFloat(amount1) * 10 ** 18),
-          BigInt(parseFloat(amount2) * 10 ** 18),
-          BigInt(parseFloat(amount3) * 10 ** 18),
-          BigInt(parseFloat(amount4) * 10 ** 18),
-        ]);
-        console.log("vPrivate", vPrivate);
-      } else {
-        setTotal("0");
-      }
+      const totalEther = amount11.add(amount22).add(amount33).add(amount44);
+
+      // convert to string
+      const totalEther2 = ethers.utils.formatEther(totalEther);
+
+      // if (total == V_TOTAL) {
+      setTotal(String(totalEther2));
+
+      setVPrivate([
+        BigInt(parseFloat(amount1) * 10 ** 18),
+        BigInt(parseFloat(amount2) * 10 ** 18),
+        BigInt(parseFloat(amount3) * 10 ** 18),
+        BigInt(parseFloat(amount4) * 10 ** 18),
+      ]);
+      console.log("vPrivate", vPrivate);
+      // } else {
+      //   setTotal("0");
+      // }
     } else {
       setTotal("0");
     }
@@ -232,7 +249,11 @@ export const Deposit = () => {
                 </>
               )}
             </div>
-            <div className="text-black">Balance: {balance} ETH</div>
+            {balanceETH !== "" ? (
+              <div className="text-black">Balance: {balanceETH} ETH</div>
+            ) : (
+              <div className="text-black">Balance: {balance} ETH</div>
+            )}
           </div>
           {/* input  */}
 

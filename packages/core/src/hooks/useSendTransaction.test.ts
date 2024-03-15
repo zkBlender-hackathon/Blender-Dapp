@@ -1,7 +1,7 @@
-import { Config, useSendTransaction } from '../../src'
+import { Config, useSendTransaction } from '..'
 import { expect } from 'chai'
 import { BigNumber, utils, Wallet, ethers } from 'ethers'
-import { setupTestingConfig, TestingNetwork, renderDAppHook } from '../../src/testing'
+import { setupTestingConfig, TestingNetwork, renderDAppHook } from '../testing'
 import { parseEther } from 'ethers/lib/utils'
 
 const BASE_TX_COST = 21000

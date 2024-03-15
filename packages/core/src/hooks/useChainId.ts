@@ -1,6 +1,6 @@
 import { QueryParams } from '../constants/type/QueryParams'
 import { useConnector } from '../providers/network/connectors'
-import { useConfig } from '../hooks'
+import { useConfig } from '.'
 
 export interface UseChainIdOptions {
   queryParams?: QueryParams

@@ -1,6 +1,6 @@
-import { Config, useGasPrice } from '../../src'
+import { Config, useGasPrice } from '..'
 import { expect } from 'chai'
-import { TestingNetwork, setupTestingConfig, renderDAppHook } from '../../src/testing'
+import { TestingNetwork, setupTestingConfig, renderDAppHook } from '../testing'
 
 describe('useGasPrice', () => {
   let network1: TestingNetwork

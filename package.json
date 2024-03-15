@@ -12,6 +12,7 @@
     "@tensorflow/tfjs-core": "^4.17.0",
     "@usedapp/core": "^1.2.13",
     "autoprefixer": "^10.2.3",
+    "axios": "^1.6.7",
     "blender-helper-sdk": "^0.0.3",
     "blender-sdk": "^0.0.6",
     "child_process": "^1.0.2",

@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { Contract, utils } from 'ethers'
 import { Interface } from 'ethers/lib/utils'
-import { Call, RawCallResult } from '../../src'
+import { Call, RawCallResult } from '..'
 import { decodeCallResult } from './calls'
 
 describe('decodeCallResult', () => {

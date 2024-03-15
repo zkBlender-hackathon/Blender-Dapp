@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { useBlockNumber } from '../../src'
-import { renderDAppHook, setupTestingConfig } from '../../src/testing'
+import { useBlockNumber } from '..'
+import { renderDAppHook, setupTestingConfig } from '../testing'
 
 describe('useBlockNumber', () => {
   it('retrieves block number', async () => {

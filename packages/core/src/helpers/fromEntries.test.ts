@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { fromEntries } from '../../src/helpers/fromEntries'
+import { fromEntries } from './fromEntries'
 
 describe('fromEntries', () => {
   it('correctly wraps Object.fromEntries', async () => {

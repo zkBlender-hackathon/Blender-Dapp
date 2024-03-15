@@ -1,6 +1,6 @@
-import { useTokenList } from '../../src'
+import { useTokenList } from '..'
 import { expect } from 'chai'
-import { renderDAppHook, setupTestingConfig } from '../../src/testing'
+import { renderDAppHook, setupTestingConfig } from '../testing'
 import fetchMock from 'fetch-mock'
 
 describe('useTokenList', () => {

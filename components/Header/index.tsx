@@ -23,6 +23,7 @@ import { useMediaQuery } from "react-responsive";
 import { BnbItem } from "../Util/bnb";
 import { EthItem } from "../Util/eth";
 import { ZkSyncItem } from "../Util/zksync";
+import { ARB_SEPOLIA_TESTNET_RPC } from "../../constants/index";
 
 export type HeaderProps = PropsWithChildren<{}>;
 
@@ -31,6 +32,7 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
 
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const headerRef = useRef<HTMLDivElement>();
+  const [balanceETH, setBalanceETH] = React.useState("");
 
   const { switchNetwork, chainId, account, deactivate, activateBrowserWallet } =
     useEthers();
@@ -41,7 +43,21 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
         activateBrowserWallet()
       );
     }
-  }, []);
+
+    //  get balance
+    async function getBalance() {
+      const provider = new ethers.providers.JsonRpcProvider(
+        ARB_SEPOLIA_TESTNET_RPC
+      );
+      if (account) {
+        const balance = await provider.getBalance(account);
+        setBalanceETH(parseFloat(ethers.utils.formatEther(balance)).toFixed(5));
+      }
+    }
+    getBalance();
+  }, [balanceETH, account]);
+
+  // GET BALANCE
 
   const balanceHex = useEtherBalance(account);
 
@@ -55,7 +71,7 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
 
       return balance;
     }
-  }, [balanceHex]);
+  }, [balanceHex, account]);
 
   const [shownetwork, setShownetwork] = React.useState(false);
 
@@ -185,7 +201,7 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
                       <div className="flex flex-col gap-3">
                         <div className="flex flex-row gap-2">
                           <EthItem />
-                          <div className="my-auto">ARB</div>
+                          <div className="my-auto">ETH</div>
                         </div>
                         <div className="flex flex-row gap-2">
                           <ZkSyncItem />
@@ -210,7 +226,15 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
                   onClick={deactivate}
                 >
                   {/* truncate address  */}
-                  <div className="text-wite md:block hidden">{balance} | </div>
+                  {balanceETH ? (
+                    <div className="text-wite md:block hidden">
+                      {balanceETH} |{" "}
+                    </div>
+                  ) : (
+                    <div className="text-wite md:block hidden">
+                      {balance} |{" "}
+                    </div>
+                  )}
                   <a>{shortenIfAddress(account)}</a>
                 </div>
               )}

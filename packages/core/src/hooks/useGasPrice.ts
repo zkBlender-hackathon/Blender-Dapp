@@ -2,7 +2,7 @@ import { BigNumber } from 'ethers'
 import { useEffect, useMemo, useState } from 'react'
 import { useEthers } from './useEthers'
 import { useReadonlyNetworks } from '../providers/network/readonlyNetworks'
-import { useBlockNumber, useBlockNumbers } from '../hooks'
+import { useBlockNumber, useBlockNumbers } from '.'
 import { QueryParams } from '../constants/type/QueryParams'
 
 /**

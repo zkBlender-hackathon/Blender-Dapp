@@ -33,11 +33,7 @@ export type AppConfig = {
 };
 
 export const config: AppConfig = {
-  abis: {
-    Token: require("./abis/Token").Token,
-
-    Payment: require("./abis/Payment").Payment,
-  },
+  abis: {},
 
   addresses: {},
 };

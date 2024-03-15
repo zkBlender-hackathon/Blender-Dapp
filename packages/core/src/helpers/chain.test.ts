@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { ChainId } from '../../src'
+import { ChainId } from '..'
 import { getChainName, isLocalChain, isTestChain } from './chain'
 
 describe('chain', () => {

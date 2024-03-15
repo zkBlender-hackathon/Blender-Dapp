@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { Notification, useNotificationsContext } from '../providers'
 import { useEthers } from './useEthers'
 import { useInterval } from './useInterval'
-import { useConfig } from '../hooks'
+import { useConfig } from '.'
 
 function getExpiredNotifications(notifications: Notification[], expirationPeriod: number) {
   if (expirationPeriod === 0) {

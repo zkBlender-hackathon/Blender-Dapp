@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { FiatCurrency } from '../../src'
-import { CurrencyValue } from '../../src/model/CurrencyValue'
+import { FiatCurrency } from '..'
+import { CurrencyValue } from './CurrencyValue'
 
 const dollar = new FiatCurrency('Dollar', 'USD', 2, { prefix: '$' })
 const euro = new FiatCurrency('Euro', 'EUR')

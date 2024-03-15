@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { AdderProvider, useAdder } from './useAdder'
-import { renderDAppHook } from '../../src/testing'
+import { renderDAppHook } from '.'
 
 describe('useAdder', () => {
   it('properly renders without arguments or context wrapper', async () => {

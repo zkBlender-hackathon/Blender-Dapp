@@ -28,6 +28,9 @@ import { BnbItem } from "../Util/bnb";
 import { UsdtItem } from "../Util/usdt";
 import { SelectTokenPopup } from "../Popup/SelectTokenPopup";
 
+import axios from "axios";
+import { toast } from "react-toastify";
+
 export const Withdraw = () => {
   const { switchNetwork, chainId, account, deactivate, activateBrowserWallet } =
     useEthers();
@@ -190,7 +193,7 @@ export const Withdraw = () => {
           BigInt(parseFloat(amount4) * 10 ** 18),
         ],
         BigInt(indexInPrivateV),
-        BigInt(0)
+        BigInt(FEE)
       );
 
       if (error) {
@@ -237,7 +240,47 @@ export const Withdraw = () => {
             publicSignals[8],
           ];
 
-          const withdrawTx = await WithdrawFunction.send(callWithdrawParams);
+          const body = {
+            proofs: encodedProof,
+            root: publicSignals[0],
+            nullifierHash: publicSignals[1],
+            lead: publicSignals[2],
+            amount: publicSignals[3],
+            recipient: await toAddress(publicSignals[6]),
+            relayer: await toAddress(publicSignals[7]),
+            fee: publicSignals[8],
+            caller: account,
+          };
+
+          // console.log("body", body);
+
+          const res = await axios.post("http://localhost:3001/withdraw", body, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (res.data.error == false) {
+            toast.success("Requested to Blender Relayer", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              progress: undefined,
+              theme: "light",
+            });
+          } else {
+            toast.error("Something went wrong. Please try again later.", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
+
+          // const withdrawTx = await WithdrawFunction.send(callWithdrawParams);
         };
       }
     }
@@ -339,6 +382,50 @@ export const Withdraw = () => {
             SWAP_EXACT_TOKENS_FOR_ETH_COMMAND,
             [inputsWrapETH, inputsSwap],
           ];
+
+          const body = {
+            proofs: encodedProof,
+            root: publicSignals[0],
+            nullifierHash: publicSignals[1],
+            lead: publicSignals[2],
+            amount: publicSignals[3],
+            recipient: await toAddress(publicSignals[6]),
+            relayer: await toAddress(publicSignals[7]),
+            fee: publicSignals[8],
+            tokenOut: await toAddress(publicSignals[9]),
+            amountOutMin: publicSignals[10],
+            commands: SWAP_EXACT_TOKENS_FOR_ETH_COMMAND,
+            inputs: [inputsWrapETH, inputsSwap],
+            caller: account,
+          };
+
+          // console.log("body", body);
+
+          const res = await axios.post("http://localhost:3001/swap", body, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (res.data.error == false) {
+            toast.success("Requested to Blender Relayer", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              progress: undefined,
+              theme: "light",
+            });
+          } else {
+            toast.error("Something went wrong. Please try again later.", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
         };
       }
     }
@@ -346,26 +433,26 @@ export const Withdraw = () => {
 
   useEffect(() => {
     if (amount1 !== "" && amount2 !== "" && amount3 !== "" && amount4 !== "") {
-      const total =
-        parseFloat(amount1) +
-        parseFloat(amount2) +
-        parseFloat(amount3) +
-        parseFloat(amount4);
+      const amount11 = ethers.utils.parseEther(amount1);
+      const amount22 = ethers.utils.parseEther(amount2);
+      const amount33 = ethers.utils.parseEther(amount3);
+      const amount44 = ethers.utils.parseEther(amount4);
 
-      if (total == V_TOTAL) {
-        setTotal(String(total));
+      const totalEther = amount11.add(amount22).add(amount33).add(amount44);
 
-        setVPrivate([
-          parseFloat(amount1),
-          parseFloat(amount2),
-          parseFloat(amount3),
-          parseFloat(amount4),
-        ]);
+      // convert to string
+      const totalEther2 = ethers.utils.formatEther(totalEther);
 
-        console.log("vPrivate", vPrivate);
-      } else {
-        setTotal("0");
-      }
+      setTotal(String(totalEther2));
+
+      setVPrivate([
+        parseFloat(amount1),
+        parseFloat(amount2),
+        parseFloat(amount3),
+        parseFloat(amount4),
+      ]);
+
+      console.log("vPrivate", vPrivate);
     } else {
       setTotal("0");
     }
@@ -567,12 +654,14 @@ export const Withdraw = () => {
                   >
                     Amount withdraw
                   </div>
-                  {indexInPrivateV ? (
-                    <div className="text-black">
-                      {vPrivate[indexInPrivateV] != undefined
-                        ? String(vPrivate[indexInPrivateV])
-                        : "0.00"}
-                    </div>
+                  {indexInPrivateV && indexInPrivateV == 0 ? (
+                    <div className="text-black">{amount1}</div>
+                  ) : indexInPrivateV && indexInPrivateV == 1 ? (
+                    <div className="text-black">{amount2}</div>
+                  ) : indexInPrivateV && indexInPrivateV == 2 ? (
+                    <div className="text-black">{amount3}</div>
+                  ) : indexInPrivateV && indexInPrivateV == 3 ? (
+                    <div className="text-black">{amount4}</div>
                   ) : (
                     <div className="text-black">---</div>
                   )}

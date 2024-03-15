@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { shortenIfTransactionHash, shortenTransactionHash } from '../../src'
+import { shortenIfTransactionHash, shortenTransactionHash } from '..'
 
 describe('transactionHelpers', () => {
   describe('shortenTransactionHash', () => {
