@@ -354,7 +354,7 @@ a {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
 }
 
 .withdraw-btn-active-background {

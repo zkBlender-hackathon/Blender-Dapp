@@ -487,7 +487,30 @@ export const Withdraw = () => {
             >
               {selectedToken == "" ? (
                 <>
-                  <div className="text-black"> Select Token </div>
+                  <div
+                    className="text-black flex flex-row"
+                    style={{
+                      zIndex: 1,
+                    }}
+                  >
+                    <div className="my-auto"> Select Token </div>
+                    <svg
+                      className="my-auto"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 10L12 14L16 10"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
 
                   <div className="-mt-1">
                     <svg
@@ -577,7 +600,9 @@ export const Withdraw = () => {
           <input
             className="mx-6 bg-transparent rounded-md px-4 py-3 text-black "
             placeholder="Index in private array"
-            // type="password"
+            type="number"
+            min={0}
+            max={3}
             style={{
               background: "#EEEEEE",
             }}
@@ -702,7 +727,30 @@ export const Withdraw = () => {
                 >
                   {selectedTargetToken == "" ? (
                     <>
-                      <div className="text-black"> Select Target Token </div>
+                      <div
+                        className="text-black flex flex-row"
+                        style={{
+                          zIndex: 1,
+                        }}
+                      >
+                        <div className="my-auto"> Select Target Token </div>
+                        <svg
+                          className="my-auto"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M8 10L12 14L16 10"
+                            stroke="black"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
 
                       <div className="-mt-1">
                         <svg

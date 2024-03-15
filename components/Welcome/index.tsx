@@ -74,10 +74,20 @@ export const Welcome: FC<WelcomeProps> = () => {
           // styles.container,
         ].join(" ")}
       >
-        <div className="absolute right-[0%] top-[5%] ">
+        <div
+          className="absolute right-[0%] top-[5%] "
+          style={{
+            zIndex: 0,
+          }}
+        >
           <ItemFirst />
         </div>
-        <div className="absolute left-[0%] bottom-[-10%] ">
+        <div
+          className="absolute left-[0%] bottom-[-10%] "
+          style={{
+            zIndex: 0,
+          }}
+        >
           <ItemSecond />
         </div>
         {/* <div className="absolute left-[5%] top-[70%]  md:block hidden">

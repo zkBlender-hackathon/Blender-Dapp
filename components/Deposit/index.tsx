@@ -200,13 +200,34 @@ export const Deposit = () => {
       <div className=" md:w-[50%] w-[95%]  mx-auto ">
         <div className="text-white flex flex-col gap-4  my-24  border-features py-8">
           <div className="flex flex-row text-sm justify-between mx-6">
-            <div
-              className="flex flex-row gap-1 cursor-pointer"
-              onClick={() => setSelectTokenPopup(true)}
-            >
+            <div className="flex flex-row gap-1 cursor-pointer">
               {selectedToken == "" ? (
                 <>
-                  <div className="text-black"> Select Token </div>
+                  <div
+                    className="text-black flex flex-row"
+                    onClick={() => setSelectTokenPopup(true)}
+                    style={{
+                      zIndex: 1,
+                    }}
+                  >
+                    <div className="my-auto"> Select Token </div>
+                    <svg
+                      className="my-auto"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 10L12 14L16 10"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
 
                   <div className="-mt-1">
                     <svg
@@ -250,7 +271,11 @@ export const Deposit = () => {
               )}
             </div>
             {balanceETH !== "" ? (
-              <div className="text-black">Balance: {balanceETH} ETH</div>
+              selectedToken === "eth" ? (
+                <div className="text-black">Balance: {balanceETH} ETH</div>
+              ) : (
+                <div className="text-black"></div>
+              )
             ) : (
               <div className="text-black">Balance: {balance} ETH</div>
             )}
@@ -266,6 +291,7 @@ export const Deposit = () => {
             }}
           /> */}
 
+          {/* <div className="text-black text-left mx-6 ">Path</div> */}
           <div className=" mx-6 flex flex-col items-center">
             <div className="md:w-1/2 w-[90%] flex flex-row gap-4 justify-center items-center">
               <input
